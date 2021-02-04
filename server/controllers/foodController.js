@@ -1,7 +1,6 @@
 const {Food} = require('../models')
 const { Op } = require("sequelize");
 const axios = require('axios');
-const { response } = require('express');
 
 class foodController {
     static  getFood (req, res, next){
@@ -21,7 +20,7 @@ class foodController {
             food = food
             res.status(200).json({weather, food})
         }).catch((err) => {
-            console.log(err);
+            next(err)
         });
     }
 
@@ -39,16 +38,16 @@ class foodController {
         })
         .then((wikepedia) => {
             tempWikepedia = wikepedia
-            return axios.get(`https://developers.zomato.com/api/v2.1/search?entity_id=74&entity_type=city&q=${tempFood.name}`,{
+            return axios.get(`https://developers.zomato.com/api/v2.1/search?entity_id=74&entity_type=city&q=${tempFood.name}&count=5`,{
                 headers:{
-                    'user-key':'b33aca47499ffaf5e35d3df6b6d44ba7'
+                    'user-key':process.env.USER_KEY
                 }
             })
         })
          .then((restaurant) => { 
              res.status(200).json({food: tempFood,wikepedia:tempWikepedia.data, restaurant: restaurant.data})
         }).catch((err) => {
-             console.log(err);
+             next(err)
          });
     }
 }
