@@ -1,5 +1,5 @@
 const { User } = require('../models/index')
-const { comparePassword } = require('../helpers/bcrypt')
+const { comparePass } = require('../helpers/bcrypt')
 const { generateToken } = require('../helpers/jwt')
 
 class UserController{
@@ -39,15 +39,15 @@ class UserController{
         .then( user => {
     
           if(!user) throw { name: 'customError', message: 'Invalid email or password', status: 400 }
-          const comparedPass = comparePassword(password,user.password)
+          const comparedPass = comparePass(password,user.password)
           if(!comparedPass) throw { name: 'customError', message: 'Invalid email or password', status: 400 }
           
-          const accessToken = generateToken({
+          const access_token = generateToken({
             id: user.id,
             email: user.email,
           })
     
-          res.status(200).json({ accessToken })
+          res.status(200).json({ access_token })
     
         })
         .catch( err => {

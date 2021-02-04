@@ -18,12 +18,12 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.STRING,
       unique:{
         args:true,
-        msg:'Email aleady exist'
+        msg:'Email already exist'
       },
       validate:{
         isEmail:{
           args:true,
-          msg:'Invalil email password'
+          msg:'Invalil email'
         }
       }
     },
@@ -31,6 +31,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User',
+    hooks:{
+      beforeCreate: (instanceUser, opt) => {
+        instanceUser.password = hashPass(instanceUser.password)
+      }
+    }
   });
   return User;
 };
