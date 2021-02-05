@@ -11,36 +11,39 @@
     <title>Food Recomendation</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: #e3f2fd;">
-        <a class="navbar-brand" href="index.html">Food Recomendation</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <b></b>
+    <nav class="navbar navbar-expand-lg navbar-light  mb-3" style="background-color: #f9f871;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="register.html">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.html">Login</a>
-                </li>
-            </ul>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" id="res" href="#">Sign Up <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="log" href="#">Sign In</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="logOut" href="#">Sign Out</a>
+            </li>
+          </ul>
         </div>
-    </nav>
+      </nav> 
+
+
+    
 
     <!-- <form login> -->
   <div class="container" id="login-form">
     <div class="d-flex justify-content-center h-100">
         <div class="card">
             <div class="card-header">
-                <h3>Sign In</h3>
-                <div class="d-flex justify-content-end social_icon">
-                    <span><i class="fab fa-facebook-square"></i></span>
-                    <span><i class="fab fa-google-plus-square"></i></span>
-                    <span><i class="fab fa-twitter-square"></i></span>
-                </div>
+                <h3 style="color: black;">Sign In</h3>
+                
             </div>
-            <div class="card-body">
+            <div class="card-body" id="alertLogin">
+                
                 <form>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
@@ -55,19 +58,13 @@
                         </div>
                         <input type="password" class="form-control" id="passwordLogin" placeholder="Password">
                     </div>
-                    <div class="row align-items-center remember">
-                        <input type="checkbox">Remember Me
-                    </div>
+                    
                     <div class="form-group">
-                        <button type="submit" class="btn float-right login_btn"> Login</button>
+                        <button type="submit" class="btn float-right login_btn"> Sign In</button>
                     </div>
                 </form>
             </div>
             <div class="card-footer">
-                <div class="d-flex justify-content-center links">
-                    Don't have an account?<a href="index.html">Sign Up</a>
-                </div>
-
                 <div class="mx-auto w-full flex justify-center"></div>
                 <div class="g-signin2" data-onsuccess="onSignIn"></div>
             </div>
@@ -81,51 +78,84 @@
       <div class="card">
           <div class="card-header">
               <h3>Sign Up</h3>
-              <div class="d-flex justify-content-end social_icon">
-                  <span><i class="fab fa-facebook-square"></i></span>
-                  <span><i class="fab fa-google-plus-square"></i></span>
-                  <span><i class="fab fa-twitter-square"></i></span>
-              </div>
+              
           </div>
           <div class="card-body">
+            <div class="alert alert-success" id="succesRegister" role="alert" >
+                Succses register <a href="#" id="toLogin" class="alert-link">Login</a>. Click login 
+              </div>
               <form>
                   <div class="input-group form-group">
                       <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-user"></i></span>
                       </div>
-                      <input type="text" class="form-control" placeholder="username">
+                      <input type="text" class="form-control" id="registerEmail" placeholder="Email" >
                       
                   </div>
                   <div class="input-group form-group">
                       <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-key"></i></span>
                       </div>
-                      <input type="password" class="form-control" placeholder="password">
-                  </div>
-                  <div class="row align-items-center remember">
-                      <input type="checkbox">Remember Me
+                      <input type="password" class="form-control" id="registerLogin" placeholder="password">
                   </div>
                   <div class="form-group">
-                      <input type="submit" value="Sign Up" id="signup-btn" class="btn float-right login_btn">
+                      <button type="submit" class="btn float-right login_btn">Sing-Up</button>
                   </div>
               </form>
           </div>
       </div>
   </div>
 </div>
+
+
+<!-- main page -->
+<!-- weather -->
+<div class="jumbotron" style="background-color: rgba(245, 245, 245, .5);">
+    <h1 class="display-4">Foods Recommendation</h1>
+    <p class="lead">This is a web that moves in the world of food, which basically makes it easier for us to find food according to temperature and place.</p>
+    <small><p>By 4 Pineaple.inc</p></small>
+    <hr class="my-4">
+   <div id="weather">
+
+   </div>
+ </div>
+
+
+<!-- food -->
+<div class="container" id="food">
     
-    <footer class="text-muted" style="clear: both;">
-        <hr>
-        <div class="container">
-            <p>Copyright 2021 @ Our Food</p>
+</div>
+
+    
+  
+  <!-- modal box  -->
+  <div class="container my-4" >
+    <div id="food-list"></div>
+    <div class="modal fade" id="detail-modal" tabindex="-1" role="dialog"  aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Food Detail</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Content</p>
+          </div>
         </div>
-    </footer>
+      </div>
+    </div>
+  </div>
+
+  
+    
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="./script.js"></script>
     <script>
-        
+
     </script>
     
 </body>
