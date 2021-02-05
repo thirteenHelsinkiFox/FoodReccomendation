@@ -34,7 +34,7 @@ class foodController {
         })
         .then((food) => {
             tempFood =food
-            return axios.get(`https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${tempFood.name}`)
+            return axios.get(`https://id.wikipedia.org/w/api.php?action=query&list=search&srsearch=${tempFood.name}&format=json`)
         })
         .then((wikepedia) => {
             tempWikepedia = wikepedia
